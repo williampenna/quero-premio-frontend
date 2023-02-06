@@ -1,22 +1,20 @@
-import { useState } from 'react';
 import Prize from "../img/prize.jpeg";
 import "../css/main.css";
 import { Button } from "@material-ui/core";
 import ModalDialog from './ModalDialog';
+import SignupStore from '../store/signup';
 
 export default function Welcome() {
-	// declare a new state variable for modal open
-  const [open, setOpen] = useState(false);
+	private signupStore: SignupStore;
 
-  // function to handle modal open
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  constructor(props) {
+    super(props);
+    this.signupStore = new SignupStore();
+  }
 
-  // function to handle modal close
-  const handleClose = () => {
-    setOpen(false);
-  };
+  componentDidMount() {
+    this.signupStore.init();
+  }
 
 	return (
 		<>

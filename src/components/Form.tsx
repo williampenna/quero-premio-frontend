@@ -1,5 +1,6 @@
 import { Button, TextField, Theme, makeStyles } from "@material-ui/core";
 import { useState } from "react";
+import { observer } from 'mobx-react';
 
 const useStyles = makeStyles((theme?: Theme) => ({
   root: {
@@ -32,6 +33,10 @@ const Form = ({ handleClose }: { handleClose: any }) => {
     handleClose();
   };
 
+  onChange (event) {
+    this.updateProperty(event.target.name, event.target.value)
+  }
+
   return (
     <form className={classes.root} onSubmit={handleSubmit}>
       <TextField
@@ -39,7 +44,7 @@ const Form = ({ handleClose }: { handleClose: any }) => {
         variant="filled"
         required
         value={firstName}
-        onChange={e => setFirstName(e.target.value)} />
+        onChange={this.onChange} />
       <TextField
         label="Last Name"
         variant="filled"
